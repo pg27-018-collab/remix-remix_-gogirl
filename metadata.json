@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix: GoGirl",
+  "description": "Meet, Explore, Belong. The safe, offline-first social platform for girls in Gurgaon and Delhi.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Urbanist:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Exact User-Supplied Color Palette */
+  --color-homebody: #F49F51;          /* Golden Tangerine Apricot */
+  --color-homebody-50: #FFF9F3;
+  --color-homebody-100: #FEF0E2;
+  --color-homebody-200: #FBD7B9;
+  --color-homebody-300: #F8BE88;
+  --color-homebody-400: #F49F51;
+  --color-homebody-500: #E28833;
+  --color-homebody-600: #C26B1E;
+  --color-homebody-700: #9B5014;
+  --color-homebody-800: #7A3D0E;
+
+  --color-tequila: #FFD4E5;           /* Tequila Sunrise Pastel Pink */
+  --color-tequila-50: #FFF7FB;
+  --color-tequila-100: #FFD4E5;
+  --color-tequila-200: #FCB5D4;
+  --color-tequila-300: #F78EB9;
+  --color-tequila-400: #E96497;
+  --color-tequila-500: #CF3B75;
+  --color-tequila-600: #AD2259;
+  --color-tequila-700: #881543;
+
+  --color-springwater: #BEE4E7;       /* Spring Water Fresh Aqua Blue */
+  --color-springwater-50: #F3FBFC;
+  --color-springwater-100: #E2F5F7;
+  --color-springwater-200: #BEE4E7;
+  --color-springwater-300: #93D2D7;
+  --color-springwater-400: #62BCC3;
+  --color-springwater-500: #3EA2AA;
+  --color-springwater-600: #2C8087;
+  --color-springwater-700: #1F6066;
+  --color-springwater-800: #154247;
+
+  --color-tropical: #95C7C2;          /* Tropical Breeze Ocean Mint / Sage */
+  --color-tropical-50: #F3F9F8;
+  --color-tropical-100: #E2F1EF;
+  --color-tropical-200: #C8E5E1;
+  --color-tropical-300: #95C7C2;
+  --color-tropical-400: #6EAFA9;
+  --color-tropical-500: #4D948D;
+  --color-tropical-600: #387670;
+  --color-tropical-700: #275752;
+  --color-tropical-800: #1A3E3B;
+
+  /* Harmonized Theme Aliases */
+  --color-coral-50: #FFF9F3;          /* Warm soft linen base */
+  --color-coral-100: #FFD4E5;         /* Tequila Sunrise blush */
+  --color-coral-150: #EAD9CB;         /* Soft Sand Border */
+  --color-coral-200: #BEE4E7;         /* Spring Water accent */
+  --color-coral-250: #95C7C2;         /* Tropical Breeze accent */
+  --color-coral-400: #F49F51;         /* Homebody accent */
+  --color-coral-405: #E28833;
+  --color-coral-500: #C26B1E;         /* Warm Deep Homebody */
+  --color-coral-600: #9B5014;
+  --color-coral-605: #7A3D0E;
+  --color-coral-700: #275752;         /* Deep Tropical contrast */
+  --color-coral-750: #1A3E3B;
+  
+  --color-peach-550: #F49F51;
+  --color-peach-400: #FBD7B9;
+  --color-peach-300: #FFD4E5;
+  --color-peach-50: #FFF9F3;
+  
+  --color-sage-50: #F3FBFC;
+  --color-sage-100: #BEE4E7;
+  --color-sage-150: #95C7C2;
+  --color-sage-400: #6EAFA9;
+  --color-sage-500: #387670;
+  --color-sage-600: #275752;
+  --color-sage-700: #1A3E3B;
+  --color-sage-800: #122B29;
+  
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-brand: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-display: "Urbanist", "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* Base style resets and beautiful utility enhancements */
+body {
+  font-family: var(--font-sans);
+  background-color: #FAF7F2;
+  color: #27221F;
+}
+
+/* Hide scrollbars but keep active scrolling properties */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Frame specific classes for photobooth backgrounds */
+.bg-grid-beige,
+.bg-grid-pink {
+  background-size: 10px 10px;
+  background-image: 
+    linear-gradient(to right, rgba(128, 0, 32, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 0, 32, 0.08) 1px, transparent 1px);
+}
+
+/* --- High-end Dark Theme Overrides --- */
+.dark-theme {
+  background-color: #12100F !important; /* Premium Obsidian Warm Dark Base */
+  color: #FAF6F0 !important; /* Warm bright linen text */
+}
+
+/* Base card structures mapped to rich, clean high-contrast Charcoal Espresso */
+.dark-theme .bg-white {
+  background-color: #1C1917 !important; /* Deep Warm Charcoal card */
+  color: #FAF6F0 !important;
+}
+
+.dark-theme .bg-white\/90,
+.dark-theme .bg-white\/80,
+.dark-theme .bg-white\/70,
+.dark-theme .bg-white\/60,
+.dark-theme .bg-white\/50,
+.dark-theme .bg-white\/45,
+.dark-theme .bg-white\/20 {
+  background-color: rgba(28, 25, 23, 0.92) !important;
+  color: #FAF6F0 !important;
+}
+
+.dark-theme .bg-\[\#FAF6F0\],
+.dark-theme .bg-\[\#F8F5EE\],
+.dark-theme .bg-\[\#F5EFEB\] {
+  background-color: #12100F !important;
+}
+
+.dark-theme .bg-\[\#FAF6F0\]\/85 {
+  background-color: rgba(18, 16, 15, 0.9) !important;
+}
+
+.dark-theme .bg-\[\#FAF5F0\] {
+  background-color: #1C1917 !important;
+}
+
+/* Convert all warm gradient boxes into premium ambient glows */
+.dark-theme .bg-gradient-to-b {
+  background-image: none !important;
+  background-color: #12100F !important;
+}
+
+.dark-theme .bg-gradient-to-tr.from-coral-50\/30 {
+  background-image: linear-gradient(to top right, rgba(128, 0, 32, 0.18), #1C1917) !important;
+  border: 1px solid rgba(128, 0, 32, 0.3) !important;
+}
+
+.dark-theme .bg-gradient-to-r.from-coral-50\/70 {
+  background-image: linear-gradient(to right, rgba(128, 0, 32, 0.22), rgba(216, 196, 173, 0.05)) !important;
+  border: 1px solid rgba(128, 0, 32, 0.35) !important;
+}
+
+.dark-theme .bg-gradient-to-r.from-emerald-50\/50,
+.dark-theme .bg-gradient-to-r.from-teal-50\/50,
+.dark-theme .bg-gradient-to-r.from-teal-50 {
+  background-image: linear-gradient(to right, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.04)) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  background-color: transparent !important;
+}
+
+.dark-theme .from-\[\#FFFDFB\] {
+  --tw-gradient-from: #1C1917 !important;
+}
+
+.dark-theme .to-\[\#FAF6F0\] {
+  --tw-gradient-to: #12100F !important;
+}
+
+/* Beautiful High Contrast text colors (Sleek Ivory whites) */
+.dark-theme .text-gray-950,
+.dark-theme .text-gray-900,
+.dark-theme .text-gray-850,
+.dark-theme .text-gray-800,
+.dark-theme .text-gray-750,
+.dark-theme .text-gray-700,
+.dark-theme .text-neutral-900,
+.dark-theme .text-neutral-800,
+.dark-theme .text-neutral-700,
+.dark-theme .text-stone-900,
+.dark-theme .text-stone-800,
+.dark-theme .text-stone-700 {
+  color: #FAF6F0 !important; /* Set to absolute high-legibility warm linen */
+}
+
+/* Medium contrast secondary text color overrides */
+.dark-theme .text-gray-650,
+.dark-theme .text-gray-600,
+.dark-theme .text-neutral-600 {
+  color: #D6CEC2 !important; /* Warm beige linen */
+}
+
+/* Muted visual elements */
+.dark-theme .text-gray-500,
+.dark-theme .text-gray-400,
+.dark-theme .text-neutral-500 {
+  color: #A89F91 !important; /* Warm muted sand */
+}
+
+/* Premium translucent glows for Mehroon & Beige labels/chips */
+.dark-theme .bg-coral-50,
+.dark-theme .bg-coral-100 {
+  background-color: rgba(128, 0, 32, 0.22) !important;
+  color: #F8D7DC !important; /* Soft glowing warm rose-maroon */
+  border-color: rgba(128, 0, 32, 0.38) !important;
+}
+
+.dark-theme .text-coral-750,
+.dark-theme .text-coral-700,
+.dark-theme .text-coral-650 {
+  color: #F8D7DC !important;
+}
+
+.dark-theme .bg-sage-50,
+.dark-theme .bg-emerald-50,
+.dark-theme .bg-teal-50 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #A7F3D0 !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+.dark-theme .bg-sage-100,
+.dark-theme .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+  color: #A7F3D0 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+.dark-theme .text-sage-850,
+.dark-theme .text-sage-800,
+.dark-theme .text-sage-750,
+.dark-theme .text-sage-700,
+.dark-theme .text-emerald-800,
+.dark-theme .text-emerald-700,
+.dark-theme .text-emerald-650 {
+  color: #A7F3D0 !important;
+}
+
+/* Custom safety progress alert boxes in Safety Hub */
+.dark-theme .bg-red-50 {
+  background-color: rgba(185, 28, 28, 0.15) !important;
+  border-color: rgba(185, 28, 28, 0.3) !important;
+}
+
+.dark-theme .text-red-750,
+.dark-theme .text-red-700,
+.dark-theme .text-red-650,
+.dark-theme .text-red-600 {
+  color: #F87171 !important;
+}
+
+/* Correcting primary cursive Gg logo drawing contrast in dark mode */
+.dark-theme .text-\[\#1E293B\],
+.dark-theme .text-\[\#27221F\] {
+  color: #FAF6F0 !important;
+}
+
+/* Borders and dividers */
+.dark-theme .border-gray-150,
+.dark-theme .border-gray-200,
+.dark-theme .border-gray-100,
+.dark-theme .border-stone-200,
+.dark-theme .border-neutral-200,
+.dark-theme .border-\[\#EBE3D5\],
+.dark-theme .border-\[\#EAE3D5\] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-theme .border-gray-150\/50,
+.dark-theme .border-gray-150\/60,
+.dark-theme .border-gray-150\/45 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .divide-y > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Forms, fields, inputs and dropdown selectors */
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea {
+  background-color: #262220 !important;
+  color: #FAF6F0 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dark-theme input::placeholder {
+  color: #8C8275 !important;
+}
+
+/* Inactive feed filters */
+.dark-theme .bg-white.text-gray-500 {
+  background-color: #1C1917 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #A89F91 !important;
+}
+
+.dark-theme .bg-white.text-gray-500:hover {
+  background-color: rgba(128, 0, 32, 0.18) !important;
+  color: #F8D7DC !important;
+}
+
+/* User profile details header interactive container card */
+.dark-theme .bg-gray-50 {
+  background-color: #262220 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Reset buttons and modals */
+.dark-theme .border-red-200 {
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+.dark-theme .text-red-600 {
+  color: #F87171 !important;
+}
+
+.dark-theme .bg-white.text-red-600:hover {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Shadows */
+.dark-theme .shadow-2xl,
+.dark-theme .shadow-xl,
+.dark-theme .shadow-md,
+.dark-theme .shadow-sm,
+.dark-theme .shadow-xs,
+.dark-theme .shadow-3xs {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+
