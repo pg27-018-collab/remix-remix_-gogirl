@@ -583,7 +583,7 @@ export default function PhotoBoothTab({ userProfile, joinedMeetups = [] }: Photo
       } else {
         // Minimal / Postcard
         ctx.drawImage(img, 70, 70, 760, 800);
-        ctx.strokeStyle = '#800020';
+        ctx.strokeStyle = '#FC8EAC';
         ctx.lineWidth = 8;
         ctx.strokeRect(50, 50, 800, 840);
 
@@ -595,7 +595,7 @@ export default function PhotoBoothTab({ userProfile, joinedMeetups = [] }: Photo
 
       // Overlaid Sticker
       if (selectedSticker) {
-        ctx.fillStyle = '#800020';
+        ctx.fillStyle = '#FC8EAC';
         ctx.font = 'bold 28px sans-serif';
         ctx.textAlign = 'right';
         ctx.fillText(selectedSticker, canvas.width - 80, 1020);

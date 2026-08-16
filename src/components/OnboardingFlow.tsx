@@ -10,7 +10,7 @@ import {
   MapPin, AlertOctagon, Timer, Users, User, Check, AlertCircle,
   HelpCircle, Coffee, BookOpen, Star, Sparkles, Smile, ArrowRight, ArrowLeft,
   ShoppingBag, Flame, Target, Globe, Palette, Music, Library, Film, Cpu, Heart,
-  Sun, Moon, Rocket, Plane, Dumbbell
+  Sun, Moon, Rocket, Plane, Dumbbell, Lock
 } from 'lucide-react';
 import { UserProfile, TrustedContact } from '../types';
 import Logo from './Logo';
@@ -23,7 +23,7 @@ interface OnboardingFlowProps {
 }
 
 export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode }: OnboardingFlowProps) {
-  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
   
   // Verification State
   const [idType, setIdType] = useState<'Aadhaar' | 'Passport' | 'Driver License'>('Aadhaar');
@@ -176,8 +176,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
         return;
       }
       setStep(5);
+    } else if (step === 5) {
+      setStep(6);
     } else {
-      // Step 5: Enter Go Girl Space
+      // Step 6: Enter Go Girl Space
       onComplete({
         name,
         phone,
@@ -248,7 +250,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               ? 'bg-white/20 border-white/30 text-white' 
               : 'bg-white/70 border-gray-200/80 text-gray-600'
           }`}>
-            0{step}/05
+            0{step}/06
           </div>
         </div>
       </div>
@@ -279,8 +281,16 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               exit={{ opacity: 0, y: -15 }}
               className="flex flex-col items-center justify-center text-center h-full my-auto py-8"
             >
-              <div className="my-auto flex flex-col items-center justify-center w-full">
+              <div className="my-auto flex flex-col items-center justify-center w-full space-y-6">
                 <Logo variant="animated" />
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.5 }}
+                  className="text-xs font-semibold text-gray-500 max-w-[280px] leading-relaxed"
+                >
+                  Welcome to the exclusive community of Go Girl.
+                </motion.p>
               </div>
             </motion.div>
           )}
@@ -782,6 +792,189 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
           {step === 5 && (
             <motion.div
               key="step5"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              className="flex flex-col h-full overflow-y-auto pr-1 scrollbar-none space-y-4 text-left py-1"
+            >
+              {/* Header Title */}
+              <div className="text-center px-2">
+                <h2 className="text-xl font-black text-gray-900 tracking-tight leading-tight">
+                  Safety Works Better Together.
+                </h2>
+                <p className="text-[11.5px] text-gray-500 font-medium leading-relaxed mt-1.5 max-w-[300px] mx-auto">
+                  Enable location access to discover nearby meetups, trusted spaces, and real-time safety features.
+                </p>
+              </div>
+
+              {/* Map/Radar Graphic */}
+              <div className="relative w-full h-44 bg-[#FAF6F0] rounded-3xl border border-[#E8DCCB] overflow-hidden flex items-center justify-center shadow-xs">
+                {/* Simulated Grid Road Lines */}
+                <div className="absolute inset-0 opacity-15" style={{
+                  backgroundImage: `
+                    linear-gradient(90deg, #800020 1px, transparent 1px),
+                    linear-gradient(0deg, #800020 1px, transparent 1px),
+                    linear-gradient(45deg, #800020 1px, transparent 1px)
+                  `,
+                  backgroundSize: '40px 40px, 40px 40px, 80px 80px',
+                  backgroundPosition: 'center'
+                }} />
+
+                {/* Concentric Radar Rings */}
+                <div className="absolute w-32 h-32 border border-emerald-500/20 rounded-full flex items-center justify-center animate-pulse" />
+                <div className="absolute w-20 h-20 border border-emerald-500/35 rounded-full flex items-center justify-center" />
+                <div className="absolute w-10 h-10 border border-emerald-500/50 rounded-full flex items-center justify-center" />
+                <div className="absolute w-6 h-6 bg-emerald-500/10 rounded-full flex items-center justify-center animate-ping" />
+
+                {/* User Center Pin (Radar Source) */}
+                <div className="absolute z-10 w-7 h-7 bg-emerald-600 rounded-full border-2 border-white shadow flex items-center justify-center text-white">
+                  <MapPin className="w-3.5 h-3.5 fill-white" />
+                </div>
+
+                {/* Off-Center Markers */}
+                {/* Coffee Pin */}
+                <div className="absolute top-6 right-12 w-8 h-8 bg-[#7A3D0E] text-white rounded-full border-2 border-white shadow flex items-center justify-center hover:scale-110 transition duration-200">
+                  <Coffee className="w-4 h-4 text-white" />
+                </div>
+
+                {/* Users Pin */}
+                <div className="absolute top-14 left-10 w-8 h-8 bg-coral-500 text-white rounded-full border-2 border-white shadow flex items-center justify-center hover:scale-110 transition duration-200">
+                  <Users className="w-4 h-4 text-white" />
+                </div>
+
+                {/* Shopping Pin */}
+                <div className="absolute bottom-8 right-8 w-8 h-8 bg-emerald-600 text-white rounded-full border-2 border-white shadow flex items-center justify-center hover:scale-110 transition duration-200">
+                  <ShoppingBag className="w-4 h-4 text-white" />
+                </div>
+              </div>
+
+              {/* Toggles Container Card */}
+              <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-neutral-150 shadow-3xs p-4 space-y-3.5">
+                
+                {/* Toggle 1: Location Access */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-700 shrink-0">
+                      <MapPin className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-gray-800 block">Location Access</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setToggles({ ...toggles, location: !toggles.location })}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+                      toggles.location ? 'bg-[#484E42]' : 'bg-gray-200'
+                    }`}
+                  >
+                    <div
+                      className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${
+                        toggles.location ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Toggle 2: Emergency SOS Access */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {/* Rounded SOS Text Icon */}
+                    <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-800 font-black text-[9px] font-mono tracking-tighter shrink-0">
+                      SOS
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-gray-800 block">Emergency SOS Access</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setToggles({ ...toggles, sos: !toggles.sos })}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+                      toggles.sos ? 'bg-[#484E42]' : 'bg-gray-200'
+                    }`}
+                  >
+                    <div
+                      className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${
+                        toggles.sos ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Toggle 3: Safety Check-ins */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-700 shrink-0">
+                      <ShieldCheck className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-gray-800 block">Safety Check-ins</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setToggles({ ...toggles, checkIn: !toggles.checkIn })}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+                      toggles.checkIn ? 'bg-[#484E42]' : 'bg-gray-200'
+                    }`}
+                  >
+                    <div
+                      className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${
+                        toggles.checkIn ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {/* Toggle 4: Trusted Contact Sharing */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-700 shrink-0">
+                      <Users className="w-4.5 h-4.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-gray-800 block">Trusted Contact Sharing</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setToggles({ ...toggles, contacts: !toggles.contacts })}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+                      toggles.contacts ? 'bg-[#484E42]' : 'bg-gray-200'
+                    }`}
+                  >
+                    <div
+                      className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 ${
+                        toggles.contacts ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+              </div>
+
+              {/* Action Button & Lock note */}
+              <div className="pt-1.5 space-y-3">
+                <button
+                  type="button"
+                  onClick={handleNextStep}
+                  className="w-full bg-[#1C1A17] hover:bg-[#2C2925] active:scale-98 transition duration-200 text-white font-extrabold py-3.5 rounded-2xl text-xs tracking-wide shadow-md flex items-center justify-center cursor-pointer"
+                >
+                  Enable Safety Features
+                </button>
+                
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-gray-500 font-semibold">
+                  <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                  <span>You stay in control of what you share.</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 6 && (
+            <motion.div
+              key="step6"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
@@ -814,49 +1007,50 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
         </AnimatePresence>
       </div>
 
-      {/* Attribution line directly above bottom flex - ONLY on 5th page */}
-      {step === 5 && (
+      {/* Attribution line directly above bottom flex - ONLY on 6th page */}
+      {step === 6 && (
         <div className="text-center pt-1 pb-1">
-          <span className="text-[11.5px] font-bold tracking-wide font-sans text-stone-800">
-            GoGirl by Kaneisha HaritasH
+          <span className="text-[11.5px] font-bold tracking-wide font-serif text-stone-800">
+            Go Girl by Kaneisha HaritasH
           </span>
         </div>
       )}
 
       {/* Button controls footer */}
-      <div className={`pt-2 pb-1 border-t flex flex-col gap-2 z-10 ${step === 1 ? 'border-white/20' : 'border-gray-150/50'}`}>
-        <button
-          onClick={handleNextStep}
-          className={`w-full font-extrabold py-3.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm cursor-pointer ${
-            step === 1 
-              ? 'bg-white text-[#800020] hover:bg-[#FAF6F0] font-extrabold shadow-lg' 
-              : 'bg-gradient-to-r from-coral-500 to-rose-500 hover:from-coral-600 hover:to-rose-600 text-white'
-          }`}
-        >
-          {step === 2 && <Sparkles className="w-4 h-4 animate-pulse" />}
-          <span>
-            {step === 1 
-              ? 'Get Started' 
-              : step === 2
-                ? 'TAKE SURVEY'
-                : step === 3 
-                  ? 'Submit Survey & Continue' 
-                  : step === 4 
-                    ? 'Verify Identity & Continue' 
-                    : step === 5 
-                      ? 'ENTER GO GIRL SPACE' 
-                      : 'Continue'
-            }
-          </span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
-        {step === 1 && (
-          <span className="text-[10px] text-[#F4ECE1] text-center uppercase tracking-wider font-semibold">
-            Already verified? <span className="text-white font-bold underline hover:text-[#FAF6F0] cursor-pointer" onClick={() => setStep(5)}>Log In</span>
-          </span>
-        )}
-      </div>
-
+      {step !== 5 && (
+        <div className={`pt-2 pb-1 border-t flex flex-col gap-2 z-10 ${step === 1 ? 'border-white/20' : 'border-gray-150/50'}`}>
+          <button
+            onClick={handleNextStep}
+            className={`w-full font-extrabold py-3.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm cursor-pointer ${
+              step === 1 
+                ? 'bg-white text-[#800020] hover:bg-[#FAF6F0] font-extrabold shadow-lg' 
+                : 'bg-gradient-to-r from-coral-500 to-rose-500 hover:from-coral-600 hover:to-rose-600 text-white'
+            }`}
+          >
+            {step === 2 && <Sparkles className="w-4 h-4 animate-pulse" />}
+            <span>
+              {step === 1 
+                ? 'Get Started' 
+                : step === 2
+                  ? 'TAKE SURVEY'
+                  : step === 3 
+                    ? 'Submit Survey & Continue' 
+                    : step === 4 
+                      ? 'Verify Identity & Continue' 
+                      : step === 6 
+                        ? 'ENTER GO GIRL SPACE' 
+                        : 'Continue'
+              }
+            </span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+          {step === 1 && (
+            <span className="text-[10px] text-[#F4ECE1] text-center uppercase tracking-wider font-semibold">
+              Already verified? <span className="text-white font-bold underline hover:text-[#FAF6F0] cursor-pointer" onClick={() => setStep(6)}>Log In</span>
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }

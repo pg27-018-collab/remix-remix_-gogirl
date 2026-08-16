@@ -6,9 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  MapPin, Star, ShieldCheck, Check, Search, BadgePercent, 
-  Sparkles, SlidersHorizontal, ArrowUpRight, Gift, Home, Phone, X,
-  Users, MessageSquare, Heart, Award, Send, ChevronLeft, ChevronRight, Utensils
+  MapPin, Star, Check, Search, ArrowUpRight, Gift, X,
+  ChevronLeft, ChevronRight, Utensils
 } from 'lucide-react';
 import { SafePlace, UserProfile } from '../types';
 import { SAFE_PLACES } from '../data';
@@ -17,64 +16,7 @@ interface ExploreTabProps {
   userProfile?: UserProfile | null;
 }
 
-interface Companion {
-  id: string;
-  name: string;
-  age: number;
-  area: string;
-  avatar: string;
-  interests: string[];
-  personality: 'Introvert' | 'Ambivert' | 'Extrovert';
-  fridayNight: 'Cozy in' | 'Low-key out' | 'Out out';
-  bio: string;
-}
 
-const ALL_COMPANIONS: Companion[] = [
-  {
-    id: 'c1',
-    name: 'Ananya Roy',
-    age: 23,
-    area: 'Galleria Mall, Sector 28',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
-    interests: ['Books', 'Cafés', 'Wellness'],
-    personality: 'Introvert',
-    fridayNight: 'Cozy in',
-    bio: 'Avid vintage novel reader looking to grab warm matcha and exchange bookmarks!'
-  },
-  {
-    id: 'c2',
-    name: 'Tanya Malik',
-    age: 24,
-    area: 'DLF CyberHub',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200',
-    interests: ['Fitness', 'Wellness', 'Travel'],
-    personality: 'Ambivert',
-    fridayNight: 'Low-key out',
-    bio: 'Stretching & Pilates fan finding safe spots around Sector 29 for coffee walks.'
-  },
-  {
-    id: 'c3',
-    name: 'Priya Das',
-    age: 22,
-    area: 'Nirvana Courtyard, Sector 50',
-    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=200',
-    interests: ['Art', 'Museums', 'Fashion'],
-    personality: 'Extrovert',
-    fridayNight: 'Out out',
-    bio: 'Exhibition hopper looking for someone to try out the ceramic workshops.'
-  },
-  {
-    id: 'c4',
-    name: 'Diya Sen',
-    age: 25,
-    area: 'Connaught Place, Delhi',
-    avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=200',
-    interests: ['Startups', 'Tech', 'Cafés'],
-    personality: 'Extrovert',
-    fridayNight: 'Out out',
-    bio: 'Software engineer who loves co-working spaces and swapping business strategies.'
-  }
-];
 
 export default function ExploreTab({ userProfile }: ExploreTabProps) {
   const [places, setPlaces] = useState<SafePlace[]>(SAFE_PLACES);
@@ -86,10 +28,7 @@ export default function ExploreTab({ userProfile }: ExploreTabProps) {
   // Modal image gallery state
   const [selectedModalImageIndex, setSelectedModalImageIndex] = useState(0);
 
-  // Companion match state
-  const [selectedCompanion, setSelectedCompanion] = useState<Companion | null>(null);
-  const [companionActionSuccess, setCompanionActionSuccess] = useState(false);
-  const [customIcebreakerText, setCustomIcebreakerText] = useState('');
+
 
   const districts = ['All', 'CyberHub', 'Connaught Place', 'Galleria', 'Sector 50'];
 
@@ -112,43 +51,7 @@ export default function ExploreTab({ userProfile }: ExploreTabProps) {
 
   const selectedPlace = places.find(p => p.id === selectedPlaceId);
 
-  // Personalized score matching logic
-  const getMatchScore = (comp: Companion) => {
-    if (!userProfile) return 82; // fallback defaults
-    let score = 65;
-    
-    // Check shared interests
-    const userInterests = userProfile.interests || [];
-    const shared = comp.interests.filter(item => userInterests.includes(item));
-    score += shared.length * 10;
 
-    // Check personality style alignment
-    if (comp.personality === userProfile.personality) {
-      score += 12;
-    }
-
-    // Friday preference check
-    if (comp.fridayNight === userProfile.fridayNight) {
-      score += 8;
-    }
-
-    return Math.min(score, 99);
-  };
-
-  // Get ranked matching companions based on current profile
-  const rankedCompanions = [...ALL_COMPANIONS].map(comp => ({
-    ...comp,
-    score: getMatchScore(comp)
-  })).sort((a, b) => b.score - a.score);
-
-  const handleSendInvite = (compName: string) => {
-    setCompanionActionSuccess(true);
-    setTimeout(() => {
-      setCompanionActionSuccess(false);
-      setSelectedCompanion(null);
-      setCustomIcebreakerText('');
-    }, 3000);
-  };
 
   return (
     <div className="flex flex-col h-full relative">
@@ -191,79 +94,7 @@ export default function ExploreTab({ userProfile }: ExploreTabProps) {
       {/* Main Scroll view */}
       <div className="flex-1 overflow-y-auto space-y-4 px-2.5 pb-24 scrollbar-none">
         
-        {/* INTENTIONAL COMPANION DISCOVERY MODULE */}
-        <div className="bg-gradient-to-br from-[#FAF6F0] to-[#F4ECE1] border border-[#E8DCCB] p-4 rounded-3xl shadow-xs text-left">
-          <div className="flex justify-between items-center mb-1">
-            <div className="flex items-center gap-1.5">
-              <div className="p-1.5 bg-[#F4ECE1] text-[#800020] rounded-lg">
-                <Sparkles className="w-3.5 h-3.5 text-[#800020] animate-pulse" />
-              </div>
-              <span className="text-[10px] uppercase font-mono font-extrabold text-[#800020] tracking-wider">
-                Companion Matching
-              </span>
-            </div>
-            {userProfile && (
-              <span className="text-[8.5px] bg-coral-100 text-coral-750 font-extrabold px-1.5 py-0.5 rounded-full">
-                Style: {userProfile.personality}
-              </span>
-            )}
-          </div>
 
-          <h4 className="text-[13px] font-black text-gray-900 tracking-tight leading-snug">
-            Community Members Nearby
-          </h4>
-          <p className="text-[10.5px] text-gray-500 mt-1 font-semibold leading-relaxed">
-            Verified members who share your interests and location preferences. Send a message to connect.
-          </p>
-
-          {/* Peer Carousel Grid */}
-          <div className="grid grid-cols-2 gap-2.5 mt-3">
-            {rankedCompanions.slice(0, 2).map((comp) => (
-              <div 
-                key={comp.id}
-                className="bg-white p-3 rounded-2xl border border-neutral-150 shadow-3xs flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="relative">
-                      <img 
-                        src={comp.avatar} 
-                        alt={comp.name} 
-                        className="w-8 h-8 rounded-full border border-white shadow-sm object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white" title="Online" />
-                    </div>
-                    <div className="min-w-0">
-                      <span className="text-xs font-bold text-gray-800 block truncate">{comp.name}</span>
-                      <span className="text-[8.5px] text-emerald-600 font-extrabold flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Online
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    <span className="text-[8.5px] bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded-md font-semibold truncate max-w-full">
-                      📍 {comp.area.split(',')[0]}
-                    </span>
-                    {comp.interests.slice(0, 2).map((interest, idx) => (
-                      <span key={idx} className="text-[8.5px] bg-orange-50/60 text-coral-600 border border-coral-100/60 px-1.5 py-0.5 rounded-md font-bold">
-                        {interest}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <button 
-                  onClick={() => setSelectedCompanion(comp)}
-                  className="w-full mt-3 bg-coral-50 hover:bg-coral-100 border border-coral-200 text-coral-700 text-[10px] font-extrabold py-1.5 rounded-xl transition cursor-pointer text-center"
-                >
-                  Connect & Chat
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* RECENT UPDATES & OPENINGS SECTION */}
         <div className="bg-white rounded-2xl border border-neutral-150 p-3.5 shadow-xs text-left">
@@ -542,98 +373,7 @@ export default function ExploreTab({ userProfile }: ExploreTabProps) {
         )}
       </AnimatePresence>
 
-      {/* COMPANION DETAILED CONNECTION DIALOGUE */}
-      <AnimatePresence>
-        {selectedCompanion && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 z-35 flex items-end justify-center"
-            onClick={() => setSelectedCompanion(null)}
-          >
-            <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              className="bg-white rounded-t-3xl w-full p-6 relative text-left"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setSelectedCompanion(null)}
-                className="absolute top-4 right-4 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 transition flex items-center justify-center text-gray-500 cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
 
-              <div className="flex gap-2 items-center mb-3">
-                <span className="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-150 font-bold px-2.5 py-0.5 rounded-full uppercase flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Online Member
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3.5 mt-2">
-                <div className="relative">
-                  <img 
-                    src={selectedCompanion.avatar} 
-                    alt={selectedCompanion.name} 
-                    className="w-12 h-12 rounded-full border-2 border-coral-200 object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                  <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white shadow-xs" title="Online" />
-                </div>
-                <div>
-                  <h3 className="text-base font-black text-gray-900 leading-none">
-                    {selectedCompanion.name}, {selectedCompanion.age}
-                  </h3>
-                  <span className="text-[10.5px] font-medium text-gray-400 mt-1 block">
-                    📍 {selectedCompanion.area}
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3.5 mt-4 mb-3">
-                <div>
-                  <span className="text-[9.5px] text-gray-400 font-bold block uppercase tracking-wider">Social Alignment</span>
-                  <span className="text-xs text-gray-800 font-bold block mt-0.5">Style: {selectedCompanion.personality}</span>
-                </div>
-                <div>
-                  <span className="text-[9.5px] text-gray-400 font-bold block uppercase tracking-wider">interests</span>
-                  <span className="text-xs text-gray-800 font-bold block mt-0.5 mt-0.5 truncate">{selectedCompanion.interests.join(', ')}</span>
-                </div>
-              </div>
-
-              {/* Handcrafted Message Field */}
-              <div className="border border-coral-150 rounded-2xl p-3 bg-gray-50/50 mt-2">
-                <span className="text-[10px] uppercase font-bold text-coral-600 block mb-1.5 flex items-center gap-1.5">
-                  <MessageSquare className="w-3.5 h-3.5 text-coral-500 animate-pulse" /> Say Hello
-                </span>
-                <textarea
-                  className="w-full text-xs p-2.5 bg-white border border-neutral-150 rounded-xl focus:outline-none focus:ring-1 focus:ring-coral-400 resize-none font-semibold text-gray-700"
-                  rows={2}
-                  placeholder={`Hey ${selectedCompanion.name.split(' ')[0]}! Shared love for Books & Cafés, want to connect?`}
-                  value={customIcebreakerText}
-                  onChange={(e) => setCustomIcebreakerText(e.target.value)}
-                />
-                <button
-                  onClick={() => handleSendInvite(selectedCompanion.name)}
-                  disabled={companionActionSuccess}
-                  className="w-full mt-2.5 py-3 bg-coral-500 hover:bg-coral-600 text-white text-xs font-bold rounded-xl shadow-[0_4px_12px_rgba(212,90,37,0.14)] flex items-center justify-center gap-2 cursor-pointer transition uppercase tracking-wider"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>{companionActionSuccess ? 'Sending request...' : `Send Meetup Request`}</span>
-                </button>
-              </div>
-
-              {companionActionSuccess && (
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 mt-3.5 text-emerald-800 text-[10.5px] font-bold text-center flex items-center justify-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" /> Sent successfully! We will notify you when they respond.
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

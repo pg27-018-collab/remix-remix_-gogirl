@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Urbanist:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Urbanist:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Exact User-Supplied Color Palette */
-  --color-homebody: #F49F51;          /* Golden Tangerine Apricot */
-  --color-homebody-50: #FFF9F3;
-  --color-homebody-100: #FEF0E2;
-  --color-homebody-200: #FBD7B9;
-  --color-homebody-300: #F8BE88;
-  --color-homebody-400: #F49F51;
-  --color-homebody-500: #E28833;
-  --color-homebody-600: #C26B1E;
-  --color-homebody-700: #9B5014;
-  --color-homebody-800: #7A3D0E;
+  --color-homebody: #CF3B75;          /* Tequila Pink primary */
+  --color-homebody-50: #FFF7FB;
+  --color-homebody-100: #FFD4E5;
+  --color-homebody-200: #FCB5D4;
+  --color-homebody-300: #F78EB9;
+  --color-homebody-400: #FFD4E5;
+  --color-homebody-500: #CF3B75;
+  --color-homebody-600: #AD2259;
+  --color-homebody-700: #881543;
+  --color-homebody-800: #600527;
 
   --color-tequila: #FFD4E5;           /* Tequila Sunrise Pastel Pink */
   --color-tequila-50: #FFF7FB;
@@ -47,23 +47,23 @@
   --color-tropical-800: #1A3E3B;
 
   /* Harmonized Theme Aliases */
-  --color-coral-50: #FFF9F3;          /* Warm soft linen base */
-  --color-coral-100: #FFD4E5;         /* Tequila Sunrise blush */
-  --color-coral-150: #EAD9CB;         /* Soft Sand Border */
-  --color-coral-200: #BEE4E7;         /* Spring Water accent */
-  --color-coral-250: #95C7C2;         /* Tropical Breeze accent */
-  --color-coral-400: #F49F51;         /* Homebody accent */
-  --color-coral-405: #E28833;
-  --color-coral-500: #C26B1E;         /* Warm Deep Homebody */
-  --color-coral-600: #9B5014;
-  --color-coral-605: #7A3D0E;
-  --color-coral-700: #275752;         /* Deep Tropical contrast */
-  --color-coral-750: #1A3E3B;
+  --color-coral-50: #FFF7FB;          /* Light pink base */
+  --color-coral-100: #FFD4E5;         /* Pink #FFD4E5 */
+  --color-coral-150: #D8ECE9;         /* Soft Mint Border */
+  --color-coral-200: #95C7C2;         /* Mint accent */
+  --color-coral-250: #C8E5E1;         /* Medium light mint */
+  --color-coral-400: #FFD4E5;         /* Pink accent */
+  --color-coral-405: #FCB5D4;
+  --color-coral-500: #387670;         /* Deep brand mint */
+  --color-coral-600: #275752;         /* Dark brand mint */
+  --color-coral-605: #1A3E3B;
+  --color-coral-700: #881543;         /* Deep pink/burgundy contrast */
+  --color-coral-750: #600527;
   
-  --color-peach-550: #F49F51;
-  --color-peach-400: #FBD7B9;
+  --color-peach-550: #CF3B75;
+  --color-peach-400: #FCB5D4;
   --color-peach-300: #FFD4E5;
-  --color-peach-50: #FFF9F3;
+  --color-peach-50: #FFF7FB;
   
   --color-sage-50: #F3FBFC;
   --color-sage-100: #BEE4E7;
@@ -74,10 +74,10 @@
   --color-sage-700: #1A3E3B;
   --color-sage-800: #122B29;
   
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-brand: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-brand: "Inter", "Plus Jakarta Sans", sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
-  --font-display: "Urbanist", "Outfit", sans-serif;
+  --font-display: "Inter", "Urbanist", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
@@ -336,6 +336,158 @@ body {
 .dark-theme .shadow-xs,
 .dark-theme .shadow-3xs {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Custom Dark Mode Readability Enhancements */
+.dark-theme .bg-gray-50\/50,
+.dark-theme .bg-gray-50\/60,
+.dark-theme .bg-gray-50\/80,
+.dark-theme .bg-gray-50\/90,
+.dark-theme .bg-gray-50 {
+  background-color: #221E1C !important;
+  color: #FAF6F0 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .bg-gray-100,
+.dark-theme .bg-gray-200 {
+  background-color: #262220 !important;
+  color: #FAF6F0 !important;
+}
+
+.dark-theme .bg-stone-50,
+.dark-theme .bg-stone-100,
+.dark-theme .bg-stone-200 {
+  background-color: #1C1917 !important;
+  color: #FAF6F0 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .text-stone-600 {
+  color: #FAF6F0 !important;
+}
+
+.dark-theme .text-stone-500,
+.dark-theme .text-stone-400 {
+  color: #D6CEC2 !important;
+}
+
+.dark-theme .bg-\[\#efeae2\],
+.dark-theme .bg-\[\#f0f2f5\] {
+  background-color: #12100F !important;
+  background-image: none !important;
+}
+
+.dark-theme .bg-\[\#d9fdd3\] {
+  background-color: #1E2923 !important; /* Deep Forest Emerald Bubble */
+  color: #FAF6F0 !important;
+  border: 1px solid rgba(16, 185, 129, 0.15) !important;
+}
+
+.dark-theme .bg-orange-50\/60,
+.dark-theme .bg-orange-50\/50,
+.dark-theme .bg-orange-50 {
+  background-color: rgba(128, 64, 0, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FBD7B9 !important;
+}
+
+.dark-theme .bg-amber-50\/40,
+.dark-theme .bg-amber-50 {
+  background-color: rgba(217, 119, 6, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FDE68A !important;
+}
+
+.dark-theme .border-neutral-100\/80,
+.dark-theme .border-neutral-100\/90,
+.dark-theme .border-neutral-150 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .bg-white\/95 {
+  background-color: rgba(28, 25, 23, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Global overrides to replace WhatsApp Green #008069 with brand Sage-Mint (#387670) */
+.bg-\[\#008069\] {
+  background-color: #387670 !important; /* Deep Sage Mint */
+}
+.text-\[\#008069\] {
+  color: #387670 !important;
+}
+.border-\[\#008069\], .focus\:border-\[\#008069\]:focus {
+  border-color: #387670 !important;
+}
+.hover\:bg-emerald-700:hover {
+  background-color: #275752 !important; /* Darker Sage Mint */
+}
+.bg-emerald-50 {
+  background-color: #F3F9F8 !important; /* Light mint/linen */
+}
+.text-emerald-700 {
+  color: #387670 !important;
+}
+.border-emerald-250 {
+  border-color: #C8E5E1 !important;
+}
+
+/* Dark theme overrides for WhatsApp elements */
+.dark-theme .bg-\[\#008069\] {
+  background-color: #1C1917 !important; /* Dark Card Base */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.dark-theme .text-\[\#008069\] {
+  color: #95C7C2 !important; /* Bright Mint text */
+}
+.dark-theme .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+.dark-theme .text-emerald-700 {
+  color: #A7F3D0 !important;
+}
+
+/* Global overrides to replace Burgundy #800020 with Flamingo Pink #FC8EAC */
+.text-\[\#800020\] {
+  color: #FC8EAC !important;
+}
+.bg-\[\#800020\] {
+  background-color: #FC8EAC !important;
+}
+.border-\[\#800020\] {
+  border-color: #FC8EAC !important;
+}
+.focus\:ring-\[\#800020\]:focus {
+  --tw-ring-color: #FC8EAC !important;
+  border-color: #FC8EAC !important;
+}
+.focus\:border-\[\#800020\]:focus {
+  border-color: #FC8EAC !important;
+}
+.shadow-\[\#800020\]\/25 {
+  box-shadow: 0 20px 25px -5px rgba(252, 142, 172, 0.25), 0 8px 10px -6px rgba(252, 142, 172, 0.25) !important;
+}
+
+/* Gradients containing #800020 */
+.from-\[\#800020\] {
+  --tw-gradient-from: #FC8EAC !important;
+  --tw-gradient-to: rgba(252, 142, 172, 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.via-\[\#800020\] {
+  --tw-gradient-via: #FC8EAC !important;
+}
+.to-\[\#800020\] {
+  --tw-gradient-to: #FC8EAC !important;
+}
+
+/* Specific Onboarding and welcome Gradients */
+.bg-gradient-to-br.from-\[\#800020\].via-\[\#6B0E1D\].to-\[\#460610\] {
+  background-image: linear-gradient(135deg, #FC8EAC, #CF3B75, #881543) !important;
+}
+.bg-gradient-to-tr.from-\[\#800020\].via-\[\#92192B\].to-\[\#C2A78C\] {
+  background-image: linear-gradient(45deg, #FC8EAC, #CF3B75, #C2A78C) !important;
 }
 
 

@@ -502,7 +502,7 @@ export default function CommunityChatApp({ userProfile }: CommunityChatAppProps)
                 <MessageSquare className="w-4 h-4 text-white" />
               </div>
               <div>
-                <h1 className="text-base font-extrabold leading-tight">GoGirl Community</h1>
+                <h1 className="text-base font-extrabold leading-tight">Go Girl Community</h1>
                 <p className="text-[10px] text-emerald-100 font-medium">WhatsApp-Style Safe Group Chats</p>
               </div>
             </div>

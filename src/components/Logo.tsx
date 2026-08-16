@@ -99,10 +99,10 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-3xl font-black text-[#27221F] tracking-tight mt-1"
-            style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
+            className="text-3xl font-extrabold text-[#27221F] tracking-tight mt-1"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            GoGirl
+            Go Girl
           </motion.h1>
 
           {/* Animated Subtitle */}
@@ -153,10 +153,10 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
         </div>
         <div>
           <h1 
-            className="text-[15px] font-black text-gray-950 tracking-tight leading-none"
-            style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
+            className="text-[15px] font-extrabold text-gray-950 tracking-tight leading-none"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            GoGirl
+            Go Girl
           </h1>
           <span 
             className="text-[8.5px] uppercase font-black text-[#800020] block mt-0.5"
@@ -201,10 +201,10 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
           </svg>
         </div>
         <h2 
-          className="text-lg font-black text-gray-950 tracking-tight"
-          style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
+          className="text-lg font-extrabold text-gray-950 tracking-tight"
+          style={{ fontFamily: "var(--font-serif)" }}
         >
-            GoGirl
+            Go Girl
         </h2>
         <span 
           className="text-[9px] uppercase font-black text-[#800020] mt-0.5"
@@ -256,10 +256,10 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
 
       {/* Brand Title: GoGirl */}
       <h1 
-        className="text-4xl font-black text-gray-950 tracking-tight mt-1.5"
-        style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
+        className="text-4xl font-extrabold text-gray-950 tracking-tight mt-1.5"
+        style={{ fontFamily: "var(--font-serif)" }}
       >
-        GoGirl
+        Go Girl
       </h1>
 
       {/* Sub-brand Statement: MEET. EXPLORE. BELONG. */}

@@ -160,7 +160,33 @@ export default function App() {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Status bar removed per request */}
+                {/* Theme Switch Control */}
+                <div className="flex items-center bg-[#F4ECE1]/70 dark:bg-stone-900 p-0.5 rounded-full border border-[#E8DCCB]/50 dark:border-stone-800 shadow-3xs">
+                  <button
+                    onClick={() => isDarkMode && toggleDarkMode()}
+                    className={`p-1.2 rounded-full transition cursor-pointer flex items-center justify-center ${
+                      !isDarkMode 
+                        ? 'bg-white text-amber-500 shadow-2xs' 
+                        : 'text-stone-400 hover:text-stone-200'
+                    }`}
+                    aria-label="Light Mode"
+                    title="Light Mode"
+                  >
+                    <Sun className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => !isDarkMode && toggleDarkMode()}
+                    className={`p-1.2 rounded-full transition cursor-pointer flex items-center justify-center ${
+                      isDarkMode 
+                        ? 'bg-stone-800 text-amber-400 shadow-2xs' 
+                        : 'text-gray-405 hover:text-gray-600'
+                    }`}
+                    aria-label="Dark Mode"
+                    title="Dark Mode"
+                  >
+                    <Moon className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
 
