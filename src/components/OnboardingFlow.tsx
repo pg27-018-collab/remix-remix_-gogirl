@@ -295,16 +295,35 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
           )}
         </div>
         
-        {/* Step indicator */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <div className={`text-[10px] font-mono border px-2.5 py-1.5 rounded-full font-semibold leading-none shadow-3xs backdrop-blur-sm ${
-            step === 1 
-              ? 'bg-white/20 border-white/30 text-white' 
-              : 'bg-white/70 dark:bg-stone-900/70 border-gray-200/80 dark:border-stone-800/80 text-gray-600 dark:text-stone-300'
-          }`}>
-            0{step}/06
+        {/* Segmented Progress Indicator matching mockup design */}
+        {step > 1 && (
+          <div className="flex items-center gap-1 shrink-0 py-1.5">
+            {[0, 1, 2, 3, 4].map((i) => {
+              const activeCount = step - 1; // step 2 -> 1, step 6 -> 5
+              const isActive = i < activeCount;
+              
+              // Curated brand-colored progression matching the mockup
+              const activeColors = [
+                'bg-[#F49F51]', // Segment 1: Warm Coral/Orange
+                'bg-[#FC8EAC]', // Segment 2: Flamingo Pink
+                'bg-[#95C7C2]', // Segment 3: Mint Green
+                'bg-[#D4A373]', // Segment 4: Sand/Gold
+                'bg-[#81B29A]', // Segment 5: Earthy Green
+              ];
+              
+              return (
+                <div 
+                  key={i} 
+                  className={`h-1 w-6 rounded-full transition-all duration-300 ${
+                    isActive 
+                      ? activeColors[i] 
+                      : 'bg-gray-200/60 dark:bg-stone-800/80'
+                  }`}
+                />
+              );
+            })}
           </div>
-        </div>
+        )}
       </div>
 
       {/* Main Container */}
