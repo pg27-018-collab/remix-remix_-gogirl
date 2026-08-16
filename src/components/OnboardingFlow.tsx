@@ -267,89 +267,98 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
               {/* Opening screen: Centered text logo with technical blueprint drawing animation */}
-              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-2">
+              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-4">
                 
-                {/* SVG Blueprint Animation Container */}
-                <div className="relative w-full max-w-[280px] h-32 flex items-center justify-center">
+                {/* SVG Blueprint Animation Container - Larger and Centered */}
+                <div className="relative w-full max-w-[340px] h-44 flex items-center justify-center overflow-visible">
                   <svg 
-                    viewBox="0 0 400 120" 
+                    viewBox="0 0 500 150" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="w-full h-full overflow-visible"
                   >
-                    {/* Vertical guidelines */}
+                    {/* Vertical guidelines - sliding in from top and bottom to join */}
+                    {/* G guide (Top down) */}
                     <motion.line 
-                      x1="100" y1="-20" x2="100" y2="140" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleY: 0, opacity: 0 }}
-                      animate={{ scaleY: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.2, times: [0, 0.2, 0.8, 1], ease: "easeInOut" }}
+                      x1="120" y1="-80" x2="120" y2="230" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ y: -200, opacity: 0 }}
+                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut" }}
                     />
+                    {/* o guide (Bottom up) */}
                     <motion.line 
-                      x1="140" y1="-20" x2="140" y2="140" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleY: 0, opacity: 0 }}
-                      animate={{ scaleY: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.5, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.1 }}
+                      x1="180" y1="-80" x2="180" y2="230" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ y: 200, opacity: 0 }}
+                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.4, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
                     />
+                    {/* G2 guide (Top down) */}
                     <motion.line 
-                      x1="260" y1="-20" x2="260" y2="140" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleY: 0, opacity: 0 }}
-                      animate={{ scaleY: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.3, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.25 }}
+                      x1="290" y1="-80" x2="290" y2="230" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ y: -200, opacity: 0 }}
+                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.2 }}
                     />
+                    {/* l guide (Bottom up) */}
                     <motion.line 
-                      x1="300" y1="-20" x2="300" y2="140" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleY: 0, opacity: 0 }}
-                      animate={{ scaleY: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.6, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.15 }}
-                    />
-
-                    {/* Horizontal guidelines */}
-                    <motion.line 
-                      x1="-20" y1="35" x2="420" y2="35" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.4, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.05 }}
-                    />
-                    <motion.line 
-                      x1="-20" y1="55" x2="420" y2="55" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.2, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.1 }}
-                    />
-                    <motion.line 
-                      x1="-20" y1="80" x2="420" y2="80" 
-                      stroke="rgba(255, 255, 255, 0.35)" 
-                      strokeWidth="0.5" 
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: [0, 0.5, 0.5, 0] }}
-                      transition={{ duration: 2.5, times: [0, 0.2, 0.8, 1], ease: "easeInOut", delay: 0.2 }}
+                      x1="355" y1="-80" x2="355" y2="230" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ y: 200, opacity: 0 }}
+                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
                     />
 
-                    {/* SVG Drawn Text Logo */}
+                    {/* Horizontal guidelines - sliding in from left and right to join */}
+                    {/* Capline (Left in) */}
+                    <motion.line 
+                      x1="-100" y1="42" x2="600" y2="42" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ x: -350, opacity: 0 }}
+                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.05 }}
+                    />
+                    {/* Centerline (Right in) */}
+                    <motion.line 
+                      x1="-100" y1="68" x2="600" y2="68" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ x: 350, opacity: 0 }}
+                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
+                    />
+                    {/* Baseline (Left in) */}
+                    <motion.line 
+                      x1="-100" y1="95" x2="600" y2="95" 
+                      stroke="rgba(255, 255, 255, 0.4)" 
+                      strokeWidth="0.75" 
+                      initial={{ x: -350, opacity: 0 }}
+                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
+                      transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
+                    />
+
+                    {/* SVG Drawn Text Logo - Centered and Enlarged */}
                     <motion.text
                       x="50%"
-                      y="70%"
+                      y="65%"
                       textAnchor="middle"
-                      className="text-5xl font-extrabold stroke-white"
+                      className="stroke-white"
                       style={{ 
                         fontFamily: "var(--font-serif)",
-                        strokeWidth: "1px"
+                        strokeWidth: "1.5px",
+                        fontSize: "68px",
+                        fontWeight: "900"
                       }}
                       initial={{ 
-                        strokeDasharray: 300, 
-                        strokeDashoffset: 300, 
+                        strokeDasharray: 400, 
+                        strokeDashoffset: 400, 
                         fill: "rgba(255, 255, 255, 0)" 
                       }}
                       animate={{ 
@@ -357,8 +366,8 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         fill: "rgba(255, 255, 255, 1)" 
                       }}
                       transition={{
-                        strokeDashoffset: { duration: 1.8, ease: "easeInOut" },
-                        fill: { duration: 0.8, delay: 1.6, ease: "easeIn" }
+                        strokeDashoffset: { duration: 1.8, ease: "easeInOut", delay: 0.4 },
+                        fill: { duration: 0.8, delay: 1.8, ease: "easeIn" }
                       }}
                     >
                       Go Girl
