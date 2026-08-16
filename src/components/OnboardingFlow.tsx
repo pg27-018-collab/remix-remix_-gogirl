@@ -359,15 +359,15 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                   </svg>
                 </div>
 
-                {/* Subtitle - by Kaneisha HaritasH with fade/slide animation */}
+                {/* Subtitle - BY KANEISHA HARITASH with fade/slide animation */}
                 <motion.p
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
-                  className="text-[11px] font-black tracking-[0.24em] text-white/90 text-center"
+                  className="text-[11px] font-black tracking-[0.24em] text-white/90 text-center uppercase"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
-                  by Kaneisha HaritasH
+                  BY KANEISHA HARITASH
                 </motion.p>
               </div>
             </motion.div>
