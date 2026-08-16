@@ -124,7 +124,7 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
       <div className={`flex items-center gap-2 select-none ${className}`}>
         {/* Mini version of the Capital G and small g signature */}
         <div className="relative w-8 h-8 rounded-full bg-[#FAF6F0] border border-[#E8DCCB] flex items-center justify-center shadow-xs overflow-hidden">
-          <svg viewBox="0 0 160 160" fill="none" className="w-6.5 h-6.5 text-[#800020]">
+          <svg viewBox="0 0 160 160" fill="none" className="w-6.5 h-6.5 text-[#27221F]">
             <path 
               d="M 38,70 C 35,42 50,18 68,18 C 82,18 80,38 68,54 M 68,54 C 52,76 42,98 48,118 C 52,132 66,128 72,110 C 78,88 68,52 76,28" 
               stroke="currentColor" 
@@ -172,8 +172,8 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
   if (variant === 'compact') {
     return (
       <div className={`flex flex-col items-center text-center select-none ${className}`}>
-        <div className="relative w-16 h-16 bg-[#FAF6F0] rounded-2xl border border-[#E8DCCB] flex items-center justify-center p-2 mb-2 shadow-xs">
-          <svg viewBox="0 0 160 160" fill="none" className="w-13 h-13 text-[#800020]">
+        <div className="relative w-16 h-16 bg-[#FAF6F0] rounded-full border border-[#E8DCCB] flex items-center justify-center p-2 mb-2 shadow-xs">
+          <svg viewBox="0 0 160 160" fill="none" className="w-13 h-13 text-[#27221F]">
             <path 
               d="M 38,70 C 35,42 50,18 68,18 C 82,18 80,38 68,54 M 68,54 C 52,76 42,98 48,118 C 52,132 66,128 72,110 C 78,88 68,52 76,28" 
               stroke="currentColor" 
@@ -220,12 +220,12 @@ export default function Logo({ variant = 'large', className = '', glow = false, 
   return (
     <div className={`flex flex-col items-center text-center select-none ${className}`}>
       {/* Cursive Capital G and small g Image Area */}
-      <div className={`relative w-36 h-36 flex items-center justify-center rounded-3xl bg-[#FAF6F0] border border-[#E8DCCB] shadow-xs ${glow ? 'after:content-[""] after:absolute after:inset-4 after:-z-10 after:bg-[#F4ECE1]/80 after:blur-xl' : ''}`}>
+      <div className={`relative w-36 h-36 flex items-center justify-center rounded-full bg-[#FAF6F0] border border-[#E8DCCB] shadow-xs ${glow ? 'after:content-[""] after:absolute after:inset-4 after:-z-10 after:bg-[#F4ECE1]/80 after:blur-xl' : ''}`}>
         <svg 
           viewBox="0 0 160 160" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg" 
-          className="w-full h-full text-[#800020] p-4"
+          className="w-full h-full text-[#27221F] p-4"
         >
           <path 
             d="M 38,70 C 35,42 50,18 68,18 C 82,18 80,38 68,54 M 68,54 C 52,76 42,98 48,118 C 52,132 66,128 72,110 C 78,88 68,52 76,28" 
