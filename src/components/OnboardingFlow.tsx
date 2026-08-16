@@ -267,50 +267,50 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
               {/* Opening screen: Centered text logo with technical blueprint drawing animation */}
-              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-4">
+              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-1">
                 
-                {/* SVG Blueprint Animation Container - Larger and Centered */}
-                <div className="relative w-full max-w-[340px] h-44 flex items-center justify-center overflow-visible">
+                {/* SVG Blueprint Animation Container - Clipped with overflow-hidden */}
+                <div className="relative w-full max-w-[340px] h-32 flex items-center justify-center overflow-hidden">
                   <svg 
-                    viewBox="0 0 500 150" 
+                    viewBox="0 0 500 120" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="w-full h-full overflow-visible"
+                    className="w-full h-full overflow-hidden"
                   >
                     {/* Vertical guidelines - sliding in from top and bottom to join */}
                     {/* G guide (Top down) */}
                     <motion.line 
-                      x1="120" y1="-80" x2="120" y2="230" 
+                      x1="120" y1="-50" x2="120" y2="170" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ y: -200, opacity: 0 }}
+                      initial={{ y: -150, opacity: 0 }}
                       animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut" }}
                     />
                     {/* o guide (Bottom up) */}
                     <motion.line 
-                      x1="180" y1="-80" x2="180" y2="230" 
+                      x1="180" y1="-50" x2="180" y2="170" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ y: 200, opacity: 0 }}
+                      initial={{ y: 150, opacity: 0 }}
                       animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.4, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
                     />
                     {/* G2 guide (Top down) */}
                     <motion.line 
-                      x1="290" y1="-80" x2="290" y2="230" 
+                      x1="290" y1="-50" x2="290" y2="170" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ y: -200, opacity: 0 }}
+                      initial={{ y: -150, opacity: 0 }}
                       animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.2 }}
                     />
                     {/* l guide (Bottom up) */}
                     <motion.line 
-                      x1="355" y1="-80" x2="355" y2="230" 
+                      x1="355" y1="-50" x2="355" y2="170" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ y: 200, opacity: 0 }}
+                      initial={{ y: 150, opacity: 0 }}
                       animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
                     />
@@ -318,28 +318,28 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     {/* Horizontal guidelines - sliding in from left and right to join */}
                     {/* Capline (Left in) */}
                     <motion.line 
-                      x1="-100" y1="42" x2="600" y2="42" 
+                      x1="-50" y1="35" x2="550" y2="35" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ x: -350, opacity: 0 }}
+                      initial={{ x: -300, opacity: 0 }}
                       animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.05 }}
                     />
                     {/* Centerline (Right in) */}
                     <motion.line 
-                      x1="-100" y1="68" x2="600" y2="68" 
+                      x1="-50" y1="60" x2="550" y2="60" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ x: 350, opacity: 0 }}
+                      initial={{ x: 300, opacity: 0 }}
                       animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
                     />
                     {/* Baseline (Left in) */}
                     <motion.line 
-                      x1="-100" y1="95" x2="600" y2="95" 
+                      x1="-50" y1="85" x2="550" y2="85" 
                       stroke="rgba(255, 255, 255, 0.4)" 
                       strokeWidth="0.75" 
-                      initial={{ x: -350, opacity: 0 }}
+                      initial={{ x: -300, opacity: 0 }}
                       animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
                       transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
                     />
@@ -347,7 +347,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     {/* SVG Drawn Text Logo - Centered and Enlarged */}
                     <motion.text
                       x="50%"
-                      y="65%"
+                      y="70%"
                       textAnchor="middle"
                       className="stroke-white"
                       style={{ 
