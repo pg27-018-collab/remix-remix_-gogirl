@@ -267,7 +267,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
               {/* Opening screen: Centered text logo with technical blueprint drawing animation */}
-              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-1">
+              <div className="my-auto flex flex-col items-center justify-center w-full select-none">
                 
                 {/* SVG Blueprint Animation Container - Clipped with overflow-hidden */}
                 <div className="relative w-full max-w-[340px] h-32 flex items-center justify-center overflow-hidden">
@@ -277,77 +277,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="w-full h-full overflow-hidden"
                   >
-                    {/* Vertical guidelines - sliding in from top and bottom to join */}
-                    {/* G guide (Top down) */}
-                    <motion.line 
-                      x1="120" y1="-50" x2="120" y2="170" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ y: -150, opacity: 0 }}
-                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut" }}
-                    />
-                    {/* o guide (Bottom up) */}
-                    <motion.line 
-                      x1="180" y1="-50" x2="180" y2="170" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ y: 150, opacity: 0 }}
-                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.4, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
-                    />
-                    {/* G2 guide (Top down) */}
-                    <motion.line 
-                      x1="290" y1="-50" x2="290" y2="170" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ y: -150, opacity: 0 }}
-                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.2 }}
-                    />
-                    {/* l guide (Bottom up) */}
-                    <motion.line 
-                      x1="355" y1="-50" x2="355" y2="170" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ y: 150, opacity: 0 }}
-                      animate={{ y: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
-                    />
-
-                    {/* Horizontal guidelines - sliding in from left and right to join */}
-                    {/* Capline (Left in) */}
-                    <motion.line 
-                      x1="-50" y1="35" x2="550" y2="35" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ x: -300, opacity: 0 }}
-                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.3, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.05 }}
-                    />
-                    {/* Centerline (Right in) */}
-                    <motion.line 
-                      x1="-50" y1="60" x2="550" y2="60" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ x: 300, opacity: 0 }}
-                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.5, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.15 }}
-                    />
-                    {/* Baseline (Left in) */}
-                    <motion.line 
-                      x1="-50" y1="85" x2="550" y2="85" 
-                      stroke="rgba(255, 255, 255, 0.4)" 
-                      strokeWidth="0.75" 
-                      initial={{ x: -300, opacity: 0 }}
-                      animate={{ x: 0, opacity: [0, 0.6, 0.6, 0] }}
-                      transition={{ duration: 2.2, times: [0, 0.25, 0.8, 1], ease: "easeOut", delay: 0.1 }}
-                    />
-
                     {/* SVG Drawn Text Logo - Centered and Enlarged */}
                     <motion.text
                       x="50%"
-                      y="70%"
+                      y="68"
                       textAnchor="middle"
                       className="stroke-white"
                       style={{ 
@@ -366,25 +299,33 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         fill: "rgba(255, 255, 255, 1)" 
                       }}
                       transition={{
-                        strokeDashoffset: { duration: 1.8, ease: "easeInOut", delay: 0.4 },
-                        fill: { duration: 0.8, delay: 1.8, ease: "easeIn" }
+                        strokeDashoffset: { duration: 1.8, ease: "easeInOut", delay: 0.2 },
+                        fill: { duration: 0.8, delay: 1.6, ease: "easeIn" }
                       }}
                     >
                       Go Girl
                     </motion.text>
+
+                    {/* Subtitle - BY KANEISHA HARITASH locked right beneath Go Girl */}
+                    <motion.text
+                      x="50%"
+                      y="108"
+                      textAnchor="middle"
+                      fill="rgba(255, 255, 255, 0.9)"
+                      style={{ 
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontSize: "11px",
+                        fontWeight: "900",
+                        letterSpacing: "0.24em"
+                      }}
+                      initial={{ opacity: 0, y: 116 }}
+                      animate={{ opacity: 1, y: 108 }}
+                      transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
+                    >
+                      BY KANEISHA HARITASH
+                    </motion.text>
                   </svg>
                 </div>
-                
-                <motion.p 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="text-[11px] font-black uppercase tracking-[0.25em] text-white/80"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                >
-                  by Kaneisha HaritasH
-                </motion.p>
-              </div>
             </motion.div>
           )}
 
