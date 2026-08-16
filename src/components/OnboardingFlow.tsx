@@ -144,6 +144,41 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
     }
   };
 
+  const requestBrowserPermissions = async () => {
+    // 1. Request Geolocation permission if Location is toggled
+    if (toggles.location && navigator.geolocation) {
+      try {
+        await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 4000 });
+        });
+      } catch (err) {
+        console.warn("Location permission manual check:", err);
+      }
+    }
+
+    // 2. Request Mic permission if SOS is toggled
+    if (toggles.sos && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(track => track.stop());
+      } catch (err) {
+        console.warn("Microphone permission manual check:", err);
+      }
+    }
+
+    // 3. Request Notification permission if Safety Check-in is toggled
+    if ((toggles.checkIn || toggles.sos) && 'Notification' in window) {
+      try {
+        await Notification.requestPermission();
+      } catch (err) {
+        console.warn("Notification permission manual check:", err);
+      }
+    }
+
+    // Advance to welcome screen
+    setStep(6);
+  };
+
   const handleNextStep = () => {
     if (step === 1) {
       setStep(2);
@@ -177,7 +212,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
       }
       setStep(5);
     } else if (step === 5) {
-      setStep(6);
+      requestBrowserPermissions();
     } else {
       // Step 6: Enter Go Girl Space
       onComplete({
@@ -323,7 +358,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                       Go Girl
                     </motion.text>
 
-                    {/* Subtitle - BY KANEISHA HARITASH locked right beneath Go Girl */}
+                    {/* Subtitle - by Kaneisha HaritasH locked right beneath Go Girl */}
                     <motion.text
                       x="250"
                       y="94"
@@ -339,7 +374,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                       animate={{ opacity: 1, y: 94 }}
                       transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
                     >
-                      BY KANEISHA HARITASH
+                      by Kaneisha HaritasH
                     </motion.text>
                   </svg>
                 </div>
