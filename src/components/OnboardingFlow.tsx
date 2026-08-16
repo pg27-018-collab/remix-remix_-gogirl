@@ -326,6 +326,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     </motion.text>
                   </svg>
                 </div>
+              </div>
             </motion.div>
           )}
 
