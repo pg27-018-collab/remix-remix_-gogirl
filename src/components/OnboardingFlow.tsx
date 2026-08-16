@@ -229,23 +229,40 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
       {step !== 1 && <CheckeredBackground opacity={isDarkMode ? 0.25 : 0.65} transparentBg={true} />}
       
       {/* Header bar */}
-      <div className="flex justify-between items-center px-1 py-1 z-10">
-        {step > 1 ? (
-          <button 
-            onClick={() => setStep((prev) => (prev - 1) as any)}
-            className="w-8 h-8 rounded-full bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm shadow flex items-center justify-center text-gray-700 dark:text-stone-300 hover:bg-white dark:hover:bg-stone-800 transition cursor-pointer active:scale-95 border border-transparent dark:border-stone-850"
-            aria-label="Previous step"
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </button>
-        ) : <div className="w-8 h-8" />}
-        
-        {/* Logo Icon (shown only after step 1) */}
-        {step > 1 ? <Logo variant="header" /> : <div />}
+      <div className="flex items-center justify-between px-1 py-1 z-10 w-full gap-3">
+        <div className="flex items-center gap-3">
+          {step > 1 ? (
+            <button 
+              onClick={() => setStep((prev) => (prev - 1) as any)}
+              className="w-8 h-8 rounded-full bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm shadow flex items-center justify-center text-gray-700 dark:text-stone-300 hover:bg-white dark:hover:bg-stone-800 transition cursor-pointer active:scale-95 border border-transparent dark:border-stone-850 shrink-0"
+              aria-label="Previous step"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+          ) : <div className="w-8 h-8 shrink-0" />}
+          
+          {/* Logo Name (shown only after step 1, aligned to left without circle icon) */}
+          {step > 1 && (
+            <div className="flex flex-col text-left">
+              <h1 
+                className="text-[15px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-none"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                Go Girl
+              </h1>
+              <span 
+                className="text-[8.5px] uppercase font-black text-[#FC8EAC] block mt-1 tracking-wider"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
+                MEET. EXPLORE. BELONG.
+              </span>
+            </div>
+          )}
+        </div>
         
         {/* Step indicator */}
-        <div className="flex items-center gap-1.5">
-          <div className={`text-[10px] font-mono border px-2 py-1.5 rounded-full font-semibold leading-none shadow-3xs backdrop-blur-sm ${
+        <div className="flex items-center gap-1.5 shrink-0">
+          <div className={`text-[10px] font-mono border px-2.5 py-1.5 rounded-full font-semibold leading-none shadow-3xs backdrop-blur-sm ${
             step === 1 
               ? 'bg-white/20 border-white/30 text-white' 
               : 'bg-white/70 dark:bg-stone-900/70 border-gray-200/80 dark:border-stone-800/80 text-gray-600 dark:text-stone-300'
