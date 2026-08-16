@@ -318,28 +318,27 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               exit={{ opacity: 0, scale: 0.95 }}
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
-              {/* Opening screen: Centered text logo with technical blueprint drawing animation */}
-              <div className="my-auto flex flex-col items-center justify-center w-full select-none">
+              {/* Opening screen: Centered text logo with technical drawing outline animation */}
+              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-2">
                 
-                {/* SVG Blueprint Animation Container - Clipped with overflow-hidden */}
-                <div className="relative w-full max-w-[340px] h-32 flex items-center justify-center overflow-hidden">
+                {/* SVG Container - Handles the drawing outline animation of the logo text */}
+                <div className="relative w-full max-w-[280px] h-20 flex items-center justify-center overflow-visible">
                   <svg 
-                    viewBox="0 0 500 120" 
+                    viewBox="0 0 400 80" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="w-full h-full overflow-hidden"
+                    className="w-full h-full overflow-visible"
                   >
-                    {/* SVG Drawn Text Logo - Centered and Enlarged */}
+                    {/* SVG Drawn Text Logo - Centered */}
                     <motion.text
-                      x="250"
-                      y="70"
+                      x="200"
+                      y="60"
                       textAnchor="middle"
-                      className="stroke-white"
+                      className="stroke-white font-black"
                       style={{ 
                         fontFamily: "var(--font-serif)",
                         strokeWidth: "1.5px",
-                        fontSize: "68px",
-                        fontWeight: "900"
+                        fontSize: "60px"
                       }}
                       initial={{ 
                         strokeDasharray: 400, 
@@ -357,27 +356,19 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     >
                       Go Girl
                     </motion.text>
-
-                    {/* Subtitle - by Kaneisha HaritasH locked right beneath Go Girl */}
-                    <motion.text
-                      x="250"
-                      y="94"
-                      textAnchor="middle"
-                      fill="rgba(255, 255, 255, 0.9)"
-                      style={{ 
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        fontSize: "11px",
-                        fontWeight: "900",
-                        letterSpacing: "0.3em"
-                      }}
-                      initial={{ opacity: 0, y: 102 }}
-                      animate={{ opacity: 1, y: 94 }}
-                      transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
-                    >
-                      by Kaneisha HaritasH
-                    </motion.text>
                   </svg>
                 </div>
+
+                {/* Subtitle - by Kaneisha HaritasH with fade/slide animation */}
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
+                  className="text-[11px] font-black tracking-[0.24em] text-white/90 text-center"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  by Kaneisha HaritasH
+                </motion.p>
               </div>
             </motion.div>
           )}
