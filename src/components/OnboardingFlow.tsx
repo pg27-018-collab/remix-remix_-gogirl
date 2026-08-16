@@ -223,17 +223,17 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
       step === 1 
         ? 'bg-gradient-to-br from-[#800020] via-[#6B0E1D] to-[#460610] text-white' 
         : isDarkMode 
-          ? 'dark-theme bg-[#18181B] text-stone-100' 
-          : 'bg-[#F8F5EE] text-gray-900'
+          ? 'dark-theme bg-[#141210] text-stone-100' 
+          : 'bg-gradient-to-tr from-[#FC8EAC]/10 via-[#FFFDFD] to-[#95C7C2]/15 text-gray-900'
     }`}>
-      {step !== 1 && <CheckeredBackground opacity={isDarkMode ? 0.2 : 0.6} transparentBg={true} />}
+      {step !== 1 && <CheckeredBackground opacity={isDarkMode ? 0.25 : 0.65} transparentBg={true} />}
       
       {/* Header bar */}
       <div className="flex justify-between items-center px-1 py-1 z-10">
         {step > 1 ? (
           <button 
             onClick={() => setStep((prev) => (prev - 1) as any)}
-            className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center text-gray-700 hover:bg-white transition cursor-pointer active:scale-95"
+            className="w-8 h-8 rounded-full bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm shadow flex items-center justify-center text-gray-700 dark:text-stone-300 hover:bg-white dark:hover:bg-stone-800 transition cursor-pointer active:scale-95 border border-transparent dark:border-stone-850"
             aria-label="Previous step"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -248,7 +248,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
           <div className={`text-[10px] font-mono border px-2 py-1.5 rounded-full font-semibold leading-none shadow-3xs backdrop-blur-sm ${
             step === 1 
               ? 'bg-white/20 border-white/30 text-white' 
-              : 'bg-white/70 border-gray-200/80 text-gray-600'
+              : 'bg-white/70 dark:bg-stone-900/70 border-gray-200/80 dark:border-stone-800/80 text-gray-600 dark:text-stone-300'
           }`}>
             0{step}/06
           </div>
@@ -358,23 +358,31 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="flex flex-col h-full overflow-y-auto pr-1 scrollbar-none space-y-3 text-left py-1"
+              className="flex flex-col h-full overflow-y-auto pr-1 scrollbar-none space-y-4 text-left py-1"
             >
-              {/* Clean Survey Title */}
-              <div className="flex justify-between items-center px-1 py-0.5 mb-1">
-                <h2 className="text-base font-black text-gray-900 uppercase tracking-wider">TAKE SURVEY</h2>
-                <span className="text-[10px] font-mono font-bold text-[#800020] bg-[#FAF6F0] px-2.5 py-0.5 rounded-full border border-[#E8DCCB]">
+              {/* Classic Serif Survey Title */}
+              <div className="flex justify-between items-center px-1 py-1.5 mb-1 z-10">
+                <div>
+                  <h2 
+                    className="text-lg font-extrabold text-gray-900 dark:text-white tracking-tight"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    Personalize Your Vibe
+                  </h2>
+                  <p className="text-[10.5px] text-gray-400 dark:text-stone-400 font-bold mt-0.5">Help us find your perfect connections</p>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#FC8EAC] bg-[#FC8EAC]/10 px-2.5 py-1 rounded-full border border-[#FC8EAC]/20 shrink-0">
                   7 Questions
                 </span>
               </div>
 
               {/* Question 1: Personality Type */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-[#F4ECE1] text-[#800020] flex items-center justify-center shrink-0">
-                    <Smile className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#FC8EAC]/10 to-[#FC8EAC]/20 text-[#FC8EAC] border border-[#FC8EAC]/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <Smile className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">1. Personality Type</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">1. Personality Type</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {(['Introvert', 'Ambivert', 'Extrovert'] as const).map((opt) => {
@@ -384,10 +392,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setPersonality(opt)}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        className={`py-2 px-2 rounded-xl text-xs font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
@@ -399,12 +407,12 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               </div>
 
               {/* Question 2: Ideal Friday Night */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-[#F4ECE1] text-[#800020] flex items-center justify-center shrink-0">
-                    <Moon className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#95C7C2]/15 to-[#95C7C2]/25 text-[#3D7A72] dark:text-[#95C7C2] border border-[#95C7C2]/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <Moon className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">2. Ideal Friday Night</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">2. Ideal Friday Night</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {(['Cozy in', 'Low-key out', 'Out out'] as const).map((opt) => {
@@ -414,10 +422,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setFridayNight(opt)}
-                        className={`py-2 px-2 rounded-xl text-[11.5px] font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1 ${
+                        className={`py-2 px-2.5 rounded-xl text-[11px] font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
@@ -428,16 +436,16 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                 </div>
               </div>
 
-              {/* Question 3: Interests */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
+              {/* Question 3: Interests & Passions */}
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-lg bg-[#F4ECE1] text-[#800020] flex items-center justify-center shrink-0">
-                      <Heart className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#FC8EAC]/10 to-[#FC8EAC]/20 text-[#FC8EAC] border border-[#FC8EAC]/30 flex items-center justify-center shrink-0 shadow-3xs">
+                      <Heart className="w-4 h-4 stroke-[2.5]" />
                     </div>
-                    <h3 className="text-xs font-bold text-gray-900">3. Interests & Passions</h3>
+                    <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">3. Interests & Passions</h3>
                   </div>
-                  <span className="text-[10px] text-gray-400 font-extrabold font-mono">({interests.length}/5 selected)</span>
+                  <span className="text-[10px] text-gray-400 dark:text-stone-400 font-extrabold font-mono">({interests.length}/5 selected)</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {[
@@ -457,10 +465,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={name}
                         type="button"
                         onClick={() => toggleInterest(name)}
-                        className={`py-2 px-2 rounded-xl text-[11px] font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        className={`py-2 px-2 rounded-xl text-[11px] font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${isSel ? 'text-white' : 'text-gray-500'}`} />
@@ -472,12 +480,12 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               </div>
 
               {/* Question 4: Schedule Preference */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-                    <Sun className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-amber-100/60 to-amber-200/60 dark:from-amber-950/40 dark:to-amber-900/40 text-amber-600 dark:text-amber-400 border border-amber-300/30 dark:border-amber-800/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <Sun className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">4. Schedule Preference</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">4. Schedule Preference</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {(['Morning', 'Night'] as const).map((opt) => {
@@ -487,14 +495,14 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setSchedulePreference(opt)}
-                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
-                        <span>{opt === 'Morning' ? '🌅 Morning Person' : '🌙 Night Owl'}</span>
+                        <span className="truncate">{opt === 'Morning' ? '🌅 Morning Person' : '🌙 Night Owl'}</span>
                       </button>
                     );
                   })}
@@ -502,12 +510,12 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               </div>
 
               {/* Question 5: Group Size Preference */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                    <Users className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-emerald-100/60 to-emerald-200/60 dark:from-emerald-950/40 dark:to-emerald-900/40 text-emerald-600 dark:text-emerald-400 border border-emerald-300/30 dark:border-emerald-800/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <Users className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">5. Group Size Preference</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">5. Group Size Preference</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {(['Small groups', 'Big settings'] as const).map((opt) => {
@@ -517,14 +525,14 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setGroupSizePreference(opt)}
-                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
-                        <span>{opt}</span>
+                        <span className="truncate">{opt}</span>
                       </button>
                     );
                   })}
@@ -532,12 +540,12 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               </div>
 
               {/* Question 6: Planning Style */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0">
-                    <Sparkles className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-100/60 to-cyan-200/60 dark:from-cyan-950/40 dark:to-cyan-900/40 text-cyan-600 dark:text-cyan-400 border border-cyan-300/30 dark:border-cyan-800/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <Sparkles className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">6. Planning Style</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">6. Planning Style</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {(['Spontaneous', 'Planned'] as const).map((opt) => {
@@ -547,14 +555,14 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setPlanningStyle(opt)}
-                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
+                        className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
-                        <span>{opt}</span>
+                        <span className="truncate">{opt}</span>
                       </button>
                     );
                   })}
@@ -562,12 +570,12 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               </div>
 
               {/* Question 7: Preferred Safe Meetup Atmosphere */}
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/90 shadow-xs p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-[#F4ECE1] text-[#800020] flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-3.5 h-3.5" />
+              <div className="bg-white/90 dark:bg-[#1C1A18]/65 backdrop-blur-md rounded-2xl border border-white/60 dark:border-stone-800/80 shadow-[0_4px_20px_-1px_rgba(252,142,172,0.03)] p-3.5 space-y-2.5 transition-all duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#FC8EAC]/10 to-[#FC8EAC]/20 text-[#FC8EAC] border border-[#FC8EAC]/30 flex items-center justify-center shrink-0 shadow-3xs">
+                    <ShieldCheck className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                  <h3 className="text-xs font-bold text-gray-900">7. Preferred Safe Meetup Vibe</h3>
+                  <h3 className="text-xs font-bold text-gray-900 dark:text-stone-100">7. Preferred Safe Meetup Vibe</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   {(['Verified Cafés', 'Group Activities', 'Quiet Hubs', 'Outdoor Walks'] as const).map((opt) => {
@@ -577,10 +585,10 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         key={opt}
                         type="button"
                         onClick={() => setSafeMeetupVibe(opt)}
-                        className={`py-2.5 px-2 rounded-xl text-[11.5px] font-bold transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center gap-1 ${
+                        className={`py-2.5 px-2 rounded-xl text-[11.5px] font-bold transition-all duration-250 active:scale-95 cursor-pointer flex items-center justify-center gap-1 ${
                           isSel 
-                            ? 'bg-coral-500 text-white shadow-xs' 
-                            : 'bg-gray-50/80 border border-gray-200/70 text-gray-700 hover:bg-white'
+                            ? 'bg-[#FC8EAC] text-white shadow-md shadow-[#FC8EAC]/20 scale-[1.02] border border-[#FC8EAC]' 
+                            : 'bg-white/60 dark:bg-stone-900/40 border border-gray-150/60 dark:border-stone-850 text-gray-700 dark:text-stone-300 hover:border-pink-200/40 dark:hover:border-pink-500/30 hover:bg-white dark:hover:bg-stone-850/60 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300'
                         }`}
                       >
                         {isSel && <Check className="w-3 h-3 stroke-[3]" />}
