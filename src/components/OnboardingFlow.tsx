@@ -280,7 +280,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     {/* SVG Drawn Text Logo - Centered and Enlarged */}
                     <motion.text
                       x="50%"
-                      y="68"
+                      y="70"
                       textAnchor="middle"
                       className="stroke-white"
                       style={{ 
@@ -309,7 +309,7 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                     {/* Subtitle - BY KANEISHA HARITASH locked right beneath Go Girl */}
                     <motion.text
                       x="50%"
-                      y="108"
+                      y="92"
                       textAnchor="middle"
                       fill="rgba(255, 255, 255, 0.9)"
                       style={{ 
@@ -318,8 +318,8 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
                         fontWeight: "900",
                         letterSpacing: "0.24em"
                       }}
-                      initial={{ opacity: 0, y: 116 }}
-                      animate={{ opacity: 1, y: 108 }}
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 92 }}
                       transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
                     >
                       BY KANEISHA HARITASH
