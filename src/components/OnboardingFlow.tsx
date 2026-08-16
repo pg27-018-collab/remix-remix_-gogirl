@@ -266,20 +266,59 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               exit={{ opacity: 0, scale: 0.95 }}
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
-              {/* Opening screen: Centered serif text logo and author attribution matching District style */}
-              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-1">
-                <h1 
-                  className="text-5xl font-extrabold tracking-tight text-white mb-1"
-                  style={{ fontFamily: "var(--font-serif)" }}
+              {/* Opening screen: Centered serif text logo with dynamic 3D floating animation */}
+              <div 
+                className="my-auto flex flex-col items-center justify-center w-full select-none space-y-1"
+                style={{ perspective: 1000 }}
+              >
+                <motion.div 
+                  initial={{ opacity: 0, rotateX: 65, rotateY: -35, z: -100 }}
+                  animate={{ 
+                    opacity: 1, 
+                    rotateX: 0, 
+                    rotateY: 0, 
+                    z: 0 
+                  }}
+                  transition={{ 
+                    duration: 1.8, 
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                  className="mb-1"
+                  style={{ 
+                    transformStyle: "preserve-3d"
+                  }}
                 >
-                  Go Girl
-                </h1>
-                <p 
+                  {/* Floating looping 3D sway animation */}
+                  <motion.h1
+                    animate={{
+                      rotateX: [-3, 3, -3],
+                      rotateY: [-8, 8, -8],
+                      z: [-5, 5, -5],
+                    }}
+                    transition={{
+                      duration: 4.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="text-5xl font-extrabold tracking-tight text-white"
+                    style={{ 
+                      fontFamily: "var(--font-serif)",
+                      textShadow: "0 20px 40px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.15)"
+                    }}
+                  >
+                    Go Girl
+                  </motion.h1>
+                </motion.div>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.2 }}
                   className="text-[11px] font-black uppercase tracking-[0.25em] text-white/80"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   by Kaneisha HaritasH
-                </p>
+                </motion.p>
               </div>
             </motion.div>
           )}
