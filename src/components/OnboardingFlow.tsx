@@ -266,9 +266,20 @@ export default function OnboardingFlow({ onComplete, isDarkMode, toggleDarkMode 
               exit={{ opacity: 0, scale: 0.95 }}
               className="flex flex-col items-center text-center justify-center h-full py-4"
             >
-              {/* Opening screen: ONLY the animated logo on vibrant deep Mehroon background */}
-              <div className="my-auto flex flex-col items-center justify-center w-full">
-                <Logo variant="animated" onDark={true} />
+              {/* Opening screen: Centered serif text logo and author attribution matching District style */}
+              <div className="my-auto flex flex-col items-center justify-center w-full select-none space-y-1">
+                <h1 
+                  className="text-5xl font-extrabold tracking-tight text-white mb-1"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  Go Girl
+                </h1>
+                <p 
+                  className="text-[11px] font-black uppercase tracking-[0.25em] text-white/80"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  by Kaneisha HaritasH
+                </p>
               </div>
             </motion.div>
           )}
